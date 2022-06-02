@@ -1,4 +1,5 @@
-﻿using API_midleware;
+﻿
+using API_midleware;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,9 @@ namespace DEPT_API.Controllers
         }
 
         // GET api/values/5
-        public async Task<YoutubeModel> Get(string search)
-        {
-            return await YoutubeApi.LoadYoutubeTrailer(search);
+        public async Task<Trailer> Get(string search)
+        {     
+            return await LoadTrailer(search);
         }
 
         // POST api/values
@@ -36,6 +37,12 @@ namespace DEPT_API.Controllers
         // DELETE api/values/5
         public void Delete(int id)
         {
+        }
+
+        private async Task<Trailer> LoadTrailer(string s)
+        {
+            ApiHelper api = new ApiHelper();
+            return await api.GetTrailer(s);
         }
     }
 
