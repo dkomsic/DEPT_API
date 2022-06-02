@@ -1,3 +1,5 @@
+using DEPT_Api.Areas.HelpPage.ModelDescriptions;
+using DEPT_Api.Areas.HelpPage.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,10 +13,8 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using DEPT_API.Areas.HelpPage.ModelDescriptions;
-using DEPT_API.Areas.HelpPage.Models;
 
-namespace DEPT_API.Areas.HelpPage
+namespace DEPT_Api.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

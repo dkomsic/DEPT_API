@@ -1,4 +1,4 @@
-namespace DEPT_API.Areas.HelpPage.ModelDescriptions
+namespace DEPT_Api.Areas.HelpPage.ModelDescriptions
 {
     public class KeyValuePairModelDescription : ModelDescription
     {

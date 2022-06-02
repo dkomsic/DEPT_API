@@ -1,20 +1,19 @@
-﻿using API_midleware.Models;
+﻿using Middleware_Api_Lib.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace API_midleware
+namespace Middleware_Api_Lib
 {
-    public class ApiHelper
+    public class MiddlewareApiHelper
     {
         public async Task<Trailer> GetTrailer(string search)
         {
             Trailer res = new Trailer();
             HeaderModel header;
-            using (HttpResponseMessage response = await CustomApi.httpClient.GetAsync(Constants.SearchUrl + search))
+            using (HttpResponseMessage response = await MiddlewareApi.httpClient.GetAsync(Constants.SearchUrl + search))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -46,7 +45,7 @@ namespace API_midleware
 
         private async Task<HttpResponseMessage> GetResponseAsync(string search)
         {
-            return await CustomApi.httpClient.GetAsync(search);
+            return await MiddlewareApi.httpClient.GetAsync(search);
         }
 
         private async Task<Trailer> ProcessResponseAsync(HttpResponseMessage response)
@@ -59,7 +58,7 @@ namespace API_midleware
                     if (response.RequestMessage.RequestUri.ToString().Contains(Constants.YoutubeUrl))
                     {
                         YoutubeModel result = await response.Content.ReadAsAsync<YoutubeModel>();
-                        
+
                         res.VideoUrl = result.VideoUrl;
                         res.Title = result.Title;
                         return res;
@@ -67,13 +66,13 @@ namespace API_midleware
                     else if (response.RequestMessage.RequestUri.ToString().Contains(Constants.ImdbUrl))
                     {
                         ImdbModel result = await response.Content.ReadAsAsync<ImdbModel>();
-                    
+
                         res.Title = result.Title;
                         res.VideoTitle = result.VideoTitle;
                         res.Link = result.Link;
                         res.LinkEmbed = result.LinkEmbed;
                         res.FullTitle = result.FullTitle;
-                        
+
                         return res;
                     }
 
@@ -83,7 +82,7 @@ namespace API_midleware
                     }
                 }
                 else
-                { 
+                {
                     throw new Exception("I failed");
                 }
             }

@@ -1,10 +1,10 @@
-﻿using API_midleware;
+﻿using Middleware_Api_Lib;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace DEPT_API
+namespace DEPT_Api
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
@@ -15,7 +15,7 @@ namespace DEPT_API
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            CustomApi.InitializeClient();
+            MiddlewareApi.InitializeClient();
         }
     }
 }

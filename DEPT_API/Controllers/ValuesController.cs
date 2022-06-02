@@ -1,14 +1,10 @@
 ﻿
-using API_midleware;
-using System;
+using Middleware_Api_Lib;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace DEPT_API.Controllers
+namespace DEPT_Api.Controllers
 {
     public class ValuesController : ApiController
     {
@@ -20,7 +16,7 @@ namespace DEPT_API.Controllers
 
         // GET api/values/5
         public async Task<Trailer> Get(string search)
-        {     
+        {
             return await LoadTrailer(search);
         }
 
@@ -41,7 +37,7 @@ namespace DEPT_API.Controllers
 
         private async Task<Trailer> LoadTrailer(string s)
         {
-            ApiHelper api = new ApiHelper();
+            MiddlewareApiHelper api = new MiddlewareApiHelper();
             return await api.GetTrailer(s);
         }
     }

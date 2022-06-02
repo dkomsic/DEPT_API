@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace DEPT_API.Areas.HelpPage
+namespace DEPT_Api.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

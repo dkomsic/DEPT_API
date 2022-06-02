@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace API_midleware
+namespace Middleware_Api_Lib
 {
-    public class CustomApi
+    public class MiddlewareApi
     {
         public static HttpClient httpClient { get; set; }
 

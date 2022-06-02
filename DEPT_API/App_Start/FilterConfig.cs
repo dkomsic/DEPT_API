@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace DEPT_API
+namespace DEPT_Api
 {
     public class FilterConfig
     {

@@ -153,6 +153,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,6 +214,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -244,9 +246,9 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\API_midleware\API_midleware.csproj">
+    <ProjectReference Include="..\API_midleware\Middleware_Api_Lib.csproj">
       <Project>{A20672F2-892E-494F-9A7C-6C517B8D5F21}</Project>
-      <Name>API_midleware</Name>
+      <Name>Middleware_Api_Lib</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

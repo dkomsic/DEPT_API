@@ -1,10 +1,10 @@
+using DEPT_Api.Areas.HelpPage.ModelDescriptions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using DEPT_API.Areas.HelpPage.ModelDescriptions;
 
-namespace DEPT_API.Areas.HelpPage.Models
+namespace DEPT_Api.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.
