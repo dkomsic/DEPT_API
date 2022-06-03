@@ -36,8 +36,6 @@ namespace Middleware_Api_Lib
 
             foreach (var item in res)
             {
-                //combine results into one
-                //cache
             }
 
             return res[0];
@@ -75,7 +73,6 @@ namespace Middleware_Api_Lib
 
                         return res;
                     }
-
                     else
                     {
                         throw new Exception("Epic fail");
@@ -83,7 +80,7 @@ namespace Middleware_Api_Lib
                 }
                 else
                 {
-                    throw new Exception("I failed");
+                    throw new Exception(response.ReasonPhrase);
                 }
             }
         }
