@@ -37,6 +37,7 @@ namespace DEPT_Api.Controllers
 
         private async Task<Trailer> LoadTrailer(string s)
         {
+            if (s == null) return new Trailer();
             MiddlewareApiHelper api = new MiddlewareApiHelper();
             return await api.GetTrailer(s);
         }
