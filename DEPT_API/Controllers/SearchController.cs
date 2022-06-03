@@ -1,7 +1,7 @@
 ﻿using DEPT_API.Models;
 using System;
 using System.Net.Http;
-using System.Threading.Tasks;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace DEPT_Api.Controllers
@@ -14,37 +14,25 @@ namespace DEPT_Api.Controllers
             TrailerModel res = new TrailerModel();
             if (search != null)
             {
-                string url = "https://localhost:44326/api/Values?search=";
-                var api = WebApiApplication.httpClient.GetAsync(url + search);
-                api.Wait();
-                {
-                    if (api.Result.IsSuccessStatusCode)
-                    {
-                        var res1 = api.Result.Content.ReadAsAsync<TrailerModel>();
-                        res1.Wait();
-                        res = res1.Result;
-                    }
-                    else
-                    {
-                        throw new Exception("");
-                    }
-                }
+                res = GetTrailer(search);
             }
             return View(res);
         }
 
-        public async Task<TrailerModel> GetTrailer(string search)
+        public TrailerModel GetTrailer(string search)
         {
-            string url = "https://localhost:44326/api/Values?search=";
-            using (HttpResponseMessage response = await WebApiApplication.httpClient.GetAsync(url + search))
+            var masterApi = WebApiApplication.httpClient.GetAsync(WebConfigurationManager.AppSettings["apiUrl"] + search);
+            masterApi.Wait();
             {
-                if (response.IsSuccessStatusCode)
+                if (masterApi.Result.IsSuccessStatusCode)
                 {
-                    return await response.Content.ReadAsAsync<TrailerModel>();
+                    var res = masterApi.Result.Content.ReadAsAsync<TrailerModel>();
+                    res.Wait();
+                    return res.Result;
                 }
                 else
                 {
-                    throw new Exception(response.ReasonPhrase);
+                    throw new Exception(masterApi.Result.ReasonPhrase);
                 }
             }
         }
