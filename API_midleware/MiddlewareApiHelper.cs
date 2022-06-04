@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Middleware_Api_Lib
@@ -25,20 +26,35 @@ namespace Middleware_Api_Lib
                 }
             }
 
-            List<string> apiUrls = new List<string> { Constants.ImdbUrl + header.Results[0].Id };
+            List<string> apiUrls = new List<string> { Constants.ImdbUrl + header.Results[0].Id, Constants.YoutubeUrl + header.Results[0].Id };
 
             return res = await GetTrailerVideos(apiUrls);
         }
         private async Task<Trailer> GetTrailerVideos(List<string> searches)
         {
             HttpResponseMessage[] responses = await Task.WhenAll(searches.Select(x => GetResponseAsync(x)));
-            var res = await Task.WhenAll(responses.Select(r => ProcessResponseAsync(r)));
+            var results = await Task.WhenAll(responses.Select(r => ProcessResponseAsync(r)));
 
-            foreach (var item in res)
+            var result = AggregateResults(results);
+
+            return result;
+        }
+
+        private Trailer AggregateResults(Trailer[] results)
+        {
+            Trailer result = new Trailer();
+            foreach (var trailer in results)
             {
+                foreach (PropertyInfo prop in typeof(Trailer).GetProperties())
+                {
+                    var value = prop.GetValue(trailer, null);
+                    if (value != null)
+                    {
+                        prop.SetValue(result, value);
+                    }
+                }
             }
-
-            return res[0];
+            return result;
         }
 
         private async Task<HttpResponseMessage> GetResponseAsync(string search)
@@ -57,7 +73,7 @@ namespace Middleware_Api_Lib
                     {
                         YoutubeModel result = await response.Content.ReadAsAsync<YoutubeModel>();
 
-                        res.VideoUrl = result.VideoUrl;
+                        res.YtVideoUrl = result.VideoUrl;
                         res.Title = result.Title;
                         return res;
                     }
@@ -65,9 +81,7 @@ namespace Middleware_Api_Lib
                     {
                         ImdbModel result = await response.Content.ReadAsAsync<ImdbModel>();
 
-                        res.Title = result.Title;
-                        res.VideoTitle = result.VideoTitle;
-                        res.Link = result.Link;
+                        res.ImdbVideoUrl = result.Link;
                         res.LinkEmbed = result.LinkEmbed;
                         res.FullTitle = result.FullTitle;
 
@@ -75,7 +89,7 @@ namespace Middleware_Api_Lib
                     }
                     else
                     {
-                        throw new Exception("Epic fail");
+                        throw new Exception("Request type not handled!");
                     }
                 }
                 else
