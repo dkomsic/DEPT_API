@@ -1,7 +1,6 @@
 ﻿
 using DEPT_API.Helper;
 using Middleware_Api_Lib;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 

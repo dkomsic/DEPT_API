@@ -8,7 +8,7 @@
 
 @using (Html.BeginForm("Index", "Search", FormMethod.Get))
 { 
-    <span>Search movie trailer: </span> <input type="text" name="search" placeholder="Search movie trailer" />
+    <span>Search movie trailer: </span> <input type="text" name="search" placeholder="Enter movie" />
 }
 
 <div>
@@ -54,7 +54,3 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

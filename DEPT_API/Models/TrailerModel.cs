@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-
-namespace DEPT_API.Models
+﻿namespace DEPT_API.Models
 {
     public class TrailerModel
     {

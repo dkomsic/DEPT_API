@@ -1,0 +1,27 @@
+﻿@model DEPT_API.Models.EmailModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Request trailer</h2>
+
+@using (Html.BeginForm("Index", "Email", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "contact-form", role = "form" }))
+{
+    <fieldset>
+        <div class="form-div-1">
+            <label class="name">
+                @Html.TextBoxFor(m => m.Name, new { @placeholder = "Name", @type = "text" })
+            </label>
+        </div>
+        <div class="form-div-2">
+            <label class="email">
+                @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email Address", @type = "email" })
+            </label>
+        </div>
+        <div class="button-wrapper">
+            <input type="submit" value="Request" name="submit" class="button"> 
+        </div>
+    </fieldset>
+}
+
