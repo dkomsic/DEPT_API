@@ -1,4 +1,4 @@
-﻿using DEPT_API.Models;
+﻿using DEPT_Api.Models;
 using System;
 using System.Net.Http;
 using System.Web.Configuration;

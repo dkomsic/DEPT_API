@@ -1,11 +1,11 @@
-﻿using DEPT_API.Models;
+﻿using DEPT_Api.Models;
 using System;
 using System.Net;
 using System.Net.Mail;
 using System.Threading;
 using System.Web.Mvc;
 
-namespace DEPT_API.Controllers
+namespace DEPT_Api.Controllers
 {
     public class EmailController : Controller
     {

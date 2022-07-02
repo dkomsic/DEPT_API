@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Caching;
 
-namespace DEPT_API.Helper
+namespace DEPT_Api.Helper
 {
     public class CacheData
     {

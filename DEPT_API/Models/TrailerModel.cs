@@ -1,4 +1,4 @@
-﻿namespace DEPT_API.Models
+﻿namespace DEPT_Api.Models
 {
     public class TrailerModel
     {
